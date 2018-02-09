@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.ss16173.atmlocator.ATMContract;
 import com.example.ss16173.atmlocator.R;
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements ATMContract.ATMVi
     public void onClickBtn(View view) {
         String lat = getLat();
         String lng = getLong();
-        atmPresenter.loadATMBranchesList(getLat(), getLong());
+        Toast.makeText(this, "Button Clicked", Toast.LENGTH_SHORT).show();
+        atmPresenter.loadATMBranchesList(lat, lng);
     }
 
     public String getLat(){

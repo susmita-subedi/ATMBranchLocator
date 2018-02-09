@@ -20,12 +20,13 @@ public class ATMPresenterImpl implements ATMContract.ATMPresenter {
     @Override
     public void loadATMBranchesList(String lat, String lng) {
 
-        atmView.showLoader();
-        atmBranchesService.getATMBranches("0", "0", new ATMBranchesService.LocationCallBack() {
+        //atmView.showLoader();
+        atmBranchesService.getATMBranches(lat, lng, new ATMBranchesService.LocationCallBack() {
             @Override
             public void onSuccess() {
                 atmView.hideLoader();
                 atmView.showSuccess();
+                System.out.println("success");
             }
 
             @Override
