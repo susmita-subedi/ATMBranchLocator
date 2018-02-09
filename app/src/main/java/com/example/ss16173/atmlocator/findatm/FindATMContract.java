@@ -1,10 +1,10 @@
-package com.example.ss16173.atmlocator;
+package com.example.ss16173.atmlocator.findatm;
 
 /**
  * Created by ss16173 on 2/8/2018.
  */
 
-public interface ATMContract {
+public interface FindATMContract {
 
     interface ATMView {
 
@@ -15,6 +15,8 @@ public interface ATMContract {
         void showLoader();
 
         void hideLoader();
+
+       // void showATMList();
     }
 
     interface ATMPresenter {

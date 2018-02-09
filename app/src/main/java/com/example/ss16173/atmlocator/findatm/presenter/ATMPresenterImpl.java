@@ -1,20 +1,20 @@
-package com.example.ss16173.atmlocator.presenter;
+package com.example.ss16173.atmlocator.findatm.presenter;
 
-import com.example.ss16173.atmlocator.ATMContract;
+import com.example.ss16173.atmlocator.findatm.FindATMContract;
+import com.example.ss16173.atmlocator.findatm.service.FindATMBranchesService;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
-import com.example.ss16173.atmlocator.service.ATMBranchesService;
 
 /**
  * Created by ss16173 on 2/8/2018.
  */
 
-public class ATMPresenterImpl implements ATMContract.ATMPresenter {
+public class ATMPresenterImpl implements FindATMContract.ATMPresenter {
 
-    ATMBranchesService atmBranchesService = new ATMBranchesService();
-    ATMContract.ATMView atmView;
+    FindATMBranchesService atmBranchesService = new FindATMBranchesService();
+    FindATMContract.ATMView atmView;
 
     @Override
-    public void setView(ATMContract.ATMView view) {
+    public void setView(FindATMContract.ATMView view) {
         atmView = view;
     }
 
@@ -22,7 +22,7 @@ public class ATMPresenterImpl implements ATMContract.ATMPresenter {
     public void loadATMBranchesList(String lat, String lng) {
 
         atmView.showLoader();
-        atmBranchesService.getATMBranches(lat, lng, new ATMBranchesService.LocationCallBack() {
+        atmBranchesService.getATMBranches(lat, lng, new FindATMBranchesService.LocationCallBack() {
             @Override
             public void onError() {
                 atmView.showError();

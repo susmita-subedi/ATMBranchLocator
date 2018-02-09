@@ -2,5 +2,10 @@
     <string name="app_name">ATMLocator</string>
     <string name="url_atm_branch">https://m.chase.com/PSRWeb/location/list.action/</string>
     <string name="find_atm_button">Find ATM/Branches</string>
+    <string name="locType">Location Type</string>
+    <string name="label">Label</string>
+    <string name="address">Address</string>
+    <string name="address2">Address2</string>
+    <string name="distance">Distance</string>
 
 </resources>

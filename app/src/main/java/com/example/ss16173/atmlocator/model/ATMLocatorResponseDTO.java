@@ -1,28 +1,32 @@
 package com.example.ss16173.atmlocator.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by ss16173 on 2/8/2018.
  */
 
-public class ATMLocatorResponseDTO {
-    private String errors;
-    private ArrayList<Locations> locations;
+public class ATMLocatorResponseDTO implements Serializable {
 
-    public String getErrors() {
+    private List<Object> errors = null;
+
+    private List<Location> locations = null;
+
+    public ATMLocatorResponseDTO(List<Object> errors, List<Location> locations) {
+        this.errors = errors;
+        this.locations = locations;
+    }
+
+    public ATMLocatorResponseDTO() {
+    }
+
+    public List<Object> getErrors() {
         return errors;
     }
 
-    public void setErrors(String errors) {
-        this.errors = errors;
-    }
-
-    public ArrayList<Locations> getLocations() {
+    public List<Location> getLocations() {
         return locations;
     }
 
-    public void setLocations(ArrayList<Locations> locations) {
-        this.locations = locations;
-    }
 }
