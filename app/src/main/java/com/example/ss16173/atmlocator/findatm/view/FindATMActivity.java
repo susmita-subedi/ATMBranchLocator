@@ -9,12 +9,14 @@ import android.widget.Toast;
 import com.example.ss16173.atmlocator.ATMContract;
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.presenter.ATMPresenterImpl;
+import com.example.ss16173.atmlocator.service.FindLocationService;
 
 public class MainActivity extends AppCompatActivity implements ATMContract.ATMView {
 
     private ProgressBar progressBar;
 
     private ATMContract.ATMPresenter atmPresenter;
+    //FindLocationService locationService = new FindLocationService(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements ATMContract.ATMVi
         setContentView(R.layout.activity_main);
         atmPresenter = new ATMPresenterImpl();
         atmPresenter.setView(this);
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
     }
 
     @Override
@@ -51,12 +54,14 @@ public class MainActivity extends AppCompatActivity implements ATMContract.ATMVi
         atmPresenter.loadATMBranchesList(lat, lng);
     }
 
-    public String getLat(){
-        String lat = "40.147864";
-        return lat;
+    public String getLat() {
+       // return String.valueOf(locationService.getLatitude());
+        return "40.147864";
     }
-    public String getLong(){
-        String lng = "-82.990959";
-        return lng;
+
+
+    public String getLong() {
+        return "-82.990959";
+        //return String.valueOf(locationService.getLongitude());
     }
 }

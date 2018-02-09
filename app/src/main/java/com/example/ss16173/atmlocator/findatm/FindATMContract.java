@@ -18,8 +18,6 @@ public interface ATMContract {
     }
 
     interface ATMPresenter {
-        void accessLocation();
-
         void loadATMBranchesList(String lat, String lng);
 
         void setView(ATMView view);

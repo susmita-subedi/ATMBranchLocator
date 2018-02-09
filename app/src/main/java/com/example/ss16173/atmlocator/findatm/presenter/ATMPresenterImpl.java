@@ -1,6 +1,7 @@
 package com.example.ss16173.atmlocator.presenter;
 
 import com.example.ss16173.atmlocator.ATMContract;
+import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 import com.example.ss16173.atmlocator.service.ATMBranchesService;
 
 /**
@@ -20,26 +21,25 @@ public class ATMPresenterImpl implements ATMContract.ATMPresenter {
     @Override
     public void loadATMBranchesList(String lat, String lng) {
 
-        //atmView.showLoader();
+        atmView.showLoader();
         atmBranchesService.getATMBranches(lat, lng, new ATMBranchesService.LocationCallBack() {
             @Override
-            public void onSuccess() {
+            public void onError() {
+                atmView.showError();
+
                 atmView.hideLoader();
-                atmView.showSuccess();
-                System.out.println("success");
             }
 
             @Override
-            public void onError() {
+            public void onSuccess(ATMLocatorResponseDTO successResponse) {
+                atmView.showSuccess();
+
                 atmView.hideLoader();
-                atmView.showError();
             }
         });
 
-    }
-
-    @Override
-    public void accessLocation() {
 
     }
+
+
 }
