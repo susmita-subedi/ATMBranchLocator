@@ -1,16 +1,19 @@
 *.iml
 .gradle
 /local.properties
-/.idea
+.idea
 .build
-settings.gradle
+/settings.gradle
 .DS_Store
 /build
 /captures
 .externalNativeBuild
-graglew.bat
+/graglew.bat
 app/build
 app/libs
+/gradle.properties
+/gradlew*
+
 
 
 
