@@ -3,7 +3,6 @@ package com.example.ss16173.atmlocator.branchdetails;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -42,8 +41,8 @@ public class BranchDetailsActivity extends AppCompatActivity {
                 .commit();
 
         Bundle sendBundle = new Bundle();
-        sendBundle.putString("location", "10");
-        // mapsFragment.setArguments(bundle);
+        sendBundle.putSerializable("location", location);
+        mapsFragment.setArguments(bundle);
         branchDetailsFragment.setArguments(sendBundle);
     }
 

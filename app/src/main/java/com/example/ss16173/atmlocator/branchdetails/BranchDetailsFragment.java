@@ -30,12 +30,12 @@ public class BranchDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         Bundle bundle = this.getArguments();
-        if (bundle != null && (bundle.getString("location") != null)) {
-            dist = bundle.getString("location");
+        if (bundle != null && (bundle.getSerializable("location") != null)) {
+           location = (Location) bundle.getSerializable("location");
         }
         View view = inflater.inflate(R.layout.branch_details_fragment, container, false);
         distance = (TextView) view.findViewById(R.id.distance);
-        distance.setText((String.valueOf(dist)) + "miles");
+        distance.setText((String.valueOf(location.getDistance())) + " miles");
        // branchDetailsFragmentListener.showMarker("10", "20");
 
         return view;
