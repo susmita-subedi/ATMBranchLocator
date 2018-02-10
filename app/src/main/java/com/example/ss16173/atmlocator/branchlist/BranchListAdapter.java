@@ -77,6 +77,7 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
             distance = (TextView) v.findViewById(R.id.distance);
 
         }
+
     }
 
 

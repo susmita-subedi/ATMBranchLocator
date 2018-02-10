@@ -7,5 +7,6 @@
     <string name="address">Address</string>
     <string name="address2">Address2</string>
     <string name="distance">Distance</string>
+    <string name="atm">ATMs</string>
 
 </resources>

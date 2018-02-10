@@ -4,9 +4,12 @@ import android.app.LauncherActivity;
 import android.util.Log;
 
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.model.Location;
 import com.example.ss16173.atmlocator.network.RetrofitService;
 import com.example.ss16173.atmlocator.util.ATMLocatorResponseParser;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +39,8 @@ public class FindATMBranchesService {
         call.enqueue(new Callback<ATMLocatorResponseDTO>() {
             @Override
             public void onResponse(Call<ATMLocatorResponseDTO> call, Response<ATMLocatorResponseDTO> response) {
-                atmLocatorResponseDTO = atmLocatorResponseParser.atmLocatorResponseParser(response.body().toString());
+                atmLocatorResponseDTO = response.body();
+                callback.onSuccess(atmLocatorResponseDTO);
             }
 
             @Override

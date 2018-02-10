@@ -24,12 +24,10 @@ public class BranchListActivity extends AppCompatActivity {
     private RecyclerView branchListView;
     private BranchListAdapter branchListAdapter;
 
-    private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.branch_list);
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getSerializable("atmLocatorResponse") != null) {
             atmLocatorResponseDTO = (ATMLocatorResponseDTO) bundle.getSerializable("atmLocatorResponse");
@@ -38,7 +36,6 @@ public class BranchListActivity extends AppCompatActivity {
         }
 
         List<Location> locationList = atmLocatorResponseDTO.getLocations();
-           // editText.append(locationList.get(0).getLocType());
         branchListView = (RecyclerView) findViewById(R.id.branch_recycler_view);
         branchListAdapter = new BranchListAdapter(this, locationList);
         branchListView.setLayoutManager(recyclerViewLayoutManager);

@@ -1,5 +1,7 @@
 package com.example.ss16173.atmlocator.findatm;
 
+import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
+
 /**
  * Created by ss16173 on 2/8/2018.
  */
@@ -16,7 +18,7 @@ public interface FindATMContract {
 
         void hideLoader();
 
-       // void showATMList();
+        void showATMList(ATMLocatorResponseDTO dto);
     }
 
     interface ATMPresenter {

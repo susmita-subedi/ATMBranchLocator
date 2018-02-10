@@ -26,14 +26,13 @@ public class ATMPresenterImpl implements FindATMContract.ATMPresenter {
             @Override
             public void onError() {
                 atmView.showError();
-
                 atmView.hideLoader();
             }
 
             @Override
             public void onSuccess(ATMLocatorResponseDTO successResponse) {
                 atmView.showSuccess();
-
+                atmView.showATMList(successResponse);
                 atmView.hideLoader();
             }
         });
