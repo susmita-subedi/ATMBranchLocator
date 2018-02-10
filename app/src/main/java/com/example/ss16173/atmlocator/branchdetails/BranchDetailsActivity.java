@@ -15,7 +15,7 @@ import com.example.ss16173.atmlocator.model.Location;
  * Created by susmita on 2/9/2018.
  */
 
-public class BranchDetailsActivity extends AppCompatActivity implements BranchDetailsFragment.BranchDetailsFragmentListener {
+public class BranchDetailsActivity extends AppCompatActivity {
     private Location location;
     private TextView distance;
     MapsFragment mapsFragment;
@@ -33,25 +33,24 @@ public class BranchDetailsActivity extends AppCompatActivity implements BranchDe
         }
         branchDetailsFragment = new BranchDetailsFragment();
         mapsFragment = new MapsFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.branchDetailsFragment, branchDetailsFragment);
-        transaction.commit();
-        /*FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
-        transaction2.replace(R.id.mapFragment, mapsFragment);
-        transaction2.commit();*/
-
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.first_layout, branchDetailsFragment);
+        manager.beginTransaction()
+                .replace(R.id.first_layout, mapsFragment, mapsFragment.getTag())
+                .commit();
+        manager.beginTransaction()
+                .replace(R.id.second_layout, branchDetailsFragment, branchDetailsFragment.getTag())
+                .commit();
+
         Bundle sendBundle = new Bundle();
         sendBundle.putString("location", "10");
-       // mapsFragment.setArguments(bundle);
+        // mapsFragment.setArguments(bundle);
         branchDetailsFragment.setArguments(sendBundle);
     }
 
 
-    @Override
+   /* @Override
     public void showMarker(String lat, String lng) {
-            mapsFragment = (MapsFragment)getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-            mapsFragment.showMarker(lat, lng);
-    }
+        mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.second_layout);
+        mapsFragment.showMarker(lat, lng);
+    }*/
 }

@@ -23,7 +23,7 @@ public class BranchDetailsFragment extends Fragment {
     private Location location;
     private String dist;
 
-    BranchDetailsFragmentListener branchDetailsFragmentListener;
+    //BranchDetailsFragmentListener branchDetailsFragmentListener;
 
     @Nullable
     @Override
@@ -36,25 +36,25 @@ public class BranchDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.branch_details_fragment, container, false);
         distance = (TextView) view.findViewById(R.id.distance);
         distance.setText((String.valueOf(dist)) + "miles");
-        branchDetailsFragmentListener.showMarker("10", "20");
+       // branchDetailsFragmentListener.showMarker("10", "20");
 
         return view;
     }
 
-    public interface BranchDetailsFragmentListener {
+    /*public interface BranchDetailsFragmentListener {
 
         public void showMarker(String lat, String lng);
 
-    }
+    }*/
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try {
+        /*try {
             branchDetailsFragmentListener = (BranchDetailsFragmentListener) context;
         } catch (Exception e) {
             Log.e("fragment listener", e.getMessage());
-        }
+        }*/
     }
 
 
