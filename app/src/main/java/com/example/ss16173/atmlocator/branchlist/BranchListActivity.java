@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;

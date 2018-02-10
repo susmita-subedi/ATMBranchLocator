@@ -14,7 +14,6 @@
         android:onClick="onClickBtn"
         android:text="@string/find_atm_button" />
 
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

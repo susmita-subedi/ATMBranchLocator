@@ -9,11 +9,9 @@ import android.widget.Toast;
 
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.branchlist.BranchListActivity;
-import com.example.ss16173.atmlocator.branchlist.BranchListAdapter;
 import com.example.ss16173.atmlocator.findatm.FindATMContract;
 import com.example.ss16173.atmlocator.findatm.presenter.ATMPresenterImpl;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
-import com.example.ss16173.atmlocator.util.ATMLocatorResponseParser;
 
 public class FindATMActivity extends AppCompatActivity implements FindATMContract.ATMView {
 
@@ -63,18 +61,17 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     public void onClickBtn(View view) {
         String lat = getLat();
         String lng = getLong();
-        Toast.makeText(this, "Button Clicked", Toast.LENGTH_SHORT).show();
         atmPresenter.loadATMBranchesList(lat, lng);
     }
 
     public String getLat() {
         // return String.valueOf(locationService.getLatitude());
-        return "40.147864";
+        return "32.891677";
     }
 
 
     public String getLong() {
-        return "-82.990959";
+        return "-96.947753";
         //return String.valueOf(locationService.getLongitude());
     }
 }

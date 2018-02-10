@@ -1,3 +1,4 @@
+/*
 package com.example.ss16173.atmlocator.util;
 
 import android.util.Log;
@@ -65,3 +66,4 @@ public class ATMLocatorResponseParser {
         return atmLocatorResponseDTO;
     }
 }
+*/
