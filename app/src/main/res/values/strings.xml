@@ -25,6 +25,13 @@
     <string name="searc">Search</string>
     <string name="permission_preferences">PERMISSION_PREFERENCE</string>
     <string name="permission_location">PERMISSION_LOCATION</string>
+    <string name="service_error">Unable to find ATMs/Branch near you. Please try again later.</string>
+    <string name="request_permission">Please click Ok to give access to your location</string>
+    <string name="allow">Allow</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="attention">Attention</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -2,12 +2,17 @@ package com.example.ss16173.atmlocator.findatm.view;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -40,7 +45,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         setContentView(R.layout.activity_main);
         atmPresenter = new ATMPresenterImpl();
         atmPresenter.setView(this);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
         searchFragment = new SearchFragment();
 
@@ -48,14 +53,14 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
 
     }
 
-    //check whether the method is already granted or not. If it is granted already, don't prompt the user requesting for the same permission
+    //check whether the permission is already granted or not. If it is granted already, don't prompt the user requesting for the same permission
     private int checkPermission(int permission) {
         int status = PackageManager.PERMISSION_DENIED;
         // int status2 = PackageManager.PERMISSION_DENIED;
 
         switch (permission) {
             case TXT_LOCATION:
-                status = ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION);
+                status = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
                 //status2 = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
                 break;
         }
@@ -72,14 +77,10 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         switch (permission) {
             case TXT_LOCATION:
                 ActivityCompat.requestPermissions(FindATMActivity.this,
-                        new String[]{Manifest.permission_group.LOCATION}, REQUEST_LOCATION);
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 break;
         }
     }
-
-    //if the user denied permission for the first time, show this dialogue box requesting for permission
-
-
 
 
     @Override
@@ -88,31 +89,43 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     }
 
     @Override
-    public void showError() {
+    public void showError(final String title) {
 
-        /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // set title
-        alertDialogBuilder.setTitle("Error");
+        alertDialogBuilder.setTitle(getResources().getString(R.string.attention));
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Your request could not be processed at the moment. Please try again later.")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setMessage(title)
+                .setCancelable(true)
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
-                        FindATMActivity.this.finish();
+                        if (title.equalsIgnoreCase(getString(R.string.service_error))) {
+                            dialog.dismiss();
+                        } else if (title.equalsIgnoreCase(getString(R.string.request_permission))) {
+                            requestPermission(TXT_LOCATION);
+                        }
                     }
                 });
+        if (title.equalsIgnoreCase(getString(R.string.request_permission))) {
+            alertDialogBuilder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+        }
 
 
         // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
 
         // show it
-        alertDialog.show();*/
+        alertDialog.show();
     }
 
 
@@ -134,10 +147,37 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     }
 
     public void onClickBtn(View view) {
+        if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1)) {
+            if (checkPermission(TXT_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(FindATMActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    showError(getString(R.string.request_permission));
+                }
+                else if (!permissionUtil.checkPermissionPreference("location")) {
+                    requestPermission(TXT_LOCATION);
+                    permissionUtil.updatePermissionPreference("location");
+                } else {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", this.getPackageName(), null);
+                    intent.setData(uri);
+                    this.startActivity(intent);
+                }
+
+            } else {
+                getBranchList();
+            }
+        } else {
+            getBranchList();
+        }
+    }
+
+
+    public void getBranchList() {
         Location location = locationService.getLoc();
         String lat = String.valueOf(location.getLatitude());
         String lng = String.valueOf(location.getLongitude());
         atmPresenter.loadATMBranchesList(lat, lng);
     }
+
 
 }

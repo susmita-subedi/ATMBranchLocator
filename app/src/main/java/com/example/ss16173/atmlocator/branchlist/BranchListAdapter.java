@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.branchdetails.view.BranchDetailsActivity;
-
 import com.example.ss16173.atmlocator.model.Location;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
 
     @Override
     public void onBindViewHolder(BranchListAdapter.ViewHolder holder, int position) {
-        ViewHolder viewHolder = (ViewHolder) holder;
+        ViewHolder viewHolder = holder;
         Location current = branchList.get(position);
         viewHolder.locationType.setText(current.getLocType());
         viewHolder.label.setText(current.getLabel());
@@ -69,7 +68,7 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
         TextView address2;
         TextView distance;
         View branchListLayout;
-        List<Location> locationList = new ArrayList<Location>();
+        List<Location> locationList = new ArrayList<>();
         Context context;
 
 
@@ -79,11 +78,11 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
             this.context = context;
             this.locationList = locationList;
             branchListLayout = v;
-            locationType = (TextView) v.findViewById(R.id.locType);
-            label = (TextView) v.findViewById(R.id.label);
-            address = (TextView) v.findViewById(R.id.address);
-            address2 = (TextView) v.findViewById(R.id.address2);
-            distance = (TextView) v.findViewById(R.id.distance);
+            locationType = v.findViewById(R.id.locType);
+            label = v.findViewById(R.id.label);
+            address = v.findViewById(R.id.address);
+            address2 = v.findViewById(R.id.address2);
+            distance = v.findViewById(R.id.distance);
 
         }
 
@@ -92,7 +91,7 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
             int position = getAdapterPosition();
             Location location = locationList.get(position);
             Intent intent = new Intent(context, BranchDetailsActivity.class);
-            intent.putExtra("location",location);
+            intent.putExtra("location", location);
             this.context.startActivity(intent);
         }
     }

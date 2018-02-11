@@ -12,7 +12,7 @@ public interface FindATMContract {
 
         void showSuccess();
 
-        void showError();
+        void showError(String title);
 
         void showLoader();
 

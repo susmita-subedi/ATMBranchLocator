@@ -1,7 +1,9 @@
 package com.example.ss16173.atmlocator.findatm.service;
 
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 import com.example.ss16173.atmlocator.network.RetrofitService;
 
@@ -16,9 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class FindATMBranchesService {
-    ATMLocatorResponseDTO atmLocatorResponseDTO = new ATMLocatorResponseDTO();
-    static final String BASE_URL = "https://m.chase.com/PSRWeb/location/";
-
+    private ATMLocatorResponseDTO atmLocatorResponseDTO = new ATMLocatorResponseDTO();
+    private static final String BASE_URL = "https://m.chase.com/PSRWeb/location/";
     public void getATMBranches(String lat, String lang, final LocationCallBack callback) {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -37,14 +38,14 @@ public class FindATMBranchesService {
                     callback.onSuccess(atmLocatorResponseDTO);
                 } else {
                     Log.e("Service call failure", response.message());
-                    callback.onError();
+                    callback.onError(Resources.getSystem().getString(R.string.service_error));
                 }
             }
 
             @Override
             public void onFailure(Call<ATMLocatorResponseDTO> call, Throwable t) {
                 Log.e("service call", "failure");
-                callback.onError();
+                callback.onError(Resources.getSystem().getString(R.string.service_error));
                 //todo alert box
             }
         });
@@ -53,7 +54,7 @@ public class FindATMBranchesService {
     }
 
     public interface LocationCallBack {
-        void onError();
+        void onError(String error);
 
         void onSuccess(ATMLocatorResponseDTO successResponse);
     }
