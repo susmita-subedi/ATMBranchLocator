@@ -10,8 +10,8 @@ import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 
 public class ATMPresenterImpl implements FindATMContract.ATMPresenter {
 
-    FindATMBranchesService atmBranchesService = new FindATMBranchesService();
-    FindATMContract.ATMView atmView;
+    private FindATMBranchesService atmBranchesService = new FindATMBranchesService();
+    private FindATMContract.ATMView atmView;
 
     @Override
     public void setView(FindATMContract.ATMView view) {

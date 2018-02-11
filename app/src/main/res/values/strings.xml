@@ -23,6 +23,9 @@
     <string name="miles">miles</string>
     <string name="search">Enter your ZipCode</string>
     <string name="searc">Search</string>
+    <string name="permission_preferences">PERMISSION_PREFERENCE</string>
+    <string name="permission_location">PERMISSION_LOCATION</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

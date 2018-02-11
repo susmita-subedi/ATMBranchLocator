@@ -32,11 +32,11 @@ public class FindATMBranchesService {
             @Override
             public void onResponse(Call<ATMLocatorResponseDTO> call, Response<ATMLocatorResponseDTO> response) {
                 //if (response != null && response.body() != null && !(response.body().getLocations().isEmpty())) {
-                  if(response.isSuccessful() &&  !(response.body().getLocations().isEmpty())){
+                if ((response.isSuccessful()) && (response.body() != null) && (response.body().getLocations() != null) && !(response.body().getLocations().isEmpty())) {
                     atmLocatorResponseDTO = response.body();
                     callback.onSuccess(atmLocatorResponseDTO);
                 } else {
-                      Log.e("Service call failure", response.message());
+                    Log.e("Service call failure", response.message());
                     callback.onError();
                 }
             }

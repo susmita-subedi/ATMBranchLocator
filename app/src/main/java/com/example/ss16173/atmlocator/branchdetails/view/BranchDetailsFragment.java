@@ -47,15 +47,15 @@ public class BranchDetailsFragment extends Fragment {
     }
 
     public void initializeViews(View view) {
-        locationType = (TextView) view.findViewById(R.id.locType);
-        label = (TextView) view.findViewById(R.id.label);
-        address = (TextView) view.findViewById(R.id.address);
-        address2 = (TextView) view.findViewById(R.id.address2);
-        distance = (TextView) view.findViewById(R.id.distance);
-        atms = (TextView) view.findViewById(R.id.atm_count);
-        lobby = (TextView) view.findViewById(R.id.lobby_hours);
-        driveUp = (TextView) view.findViewById(R.id.drive_up_hours);
-        type = (TextView) view.findViewById(R.id.type);
+        locationType = view.findViewById(R.id.locType);
+        label = view.findViewById(R.id.label);
+        address = view.findViewById(R.id.address);
+        address2 = view.findViewById(R.id.address2);
+        distance = view.findViewById(R.id.distance);
+        atms = view.findViewById(R.id.atm_count);
+        lobby = view.findViewById(R.id.lobby_hours);
+        driveUp = view.findViewById(R.id.drive_up_hours);
+        type = view.findViewById(R.id.type);
     }
 
     public void populateBranchDetailsView() {
@@ -67,7 +67,7 @@ public class BranchDetailsFragment extends Fragment {
         String atmCnt = location.getAtms().toString();
         atms.setText(atmCnt);
 
-        List<String> weekList = new ArrayList<String>();
+        List<String> weekList = new ArrayList<>();
         weekList.add(getResources().getString(R.string.sun));
         weekList.add(getResources().getString(R.string.mon));
         weekList.add(getResources().getString(R.string.tue));
@@ -76,25 +76,23 @@ public class BranchDetailsFragment extends Fragment {
         weekList.add(getResources().getString(R.string.fri));
         weekList.add(getResources().getString(R.string.sat));
 
-        List<String> lobbyHrList ;
+        List<String> lobbyHrList;
         lobbyHrList = location.getLobbyHrs();
-        for(int i = 0; i<weekList.size(); i++){
-            if (!lobbyHrList.get(i).isEmpty()){
-                lobby.append(weekList.get(i)+" "+lobbyHrList.get(i)+"\n");
-            }
-            else{
-                lobby.append(weekList.get(i)+ " " + getResources().getString(R.string.closed_status)+"\n");
+        for (int i = 0; i < weekList.size(); i++) {
+            if (!lobbyHrList.get(i).isEmpty()) {
+                lobby.append(weekList.get(i) + " " + lobbyHrList.get(i) + "\n");
+            } else {
+                lobby.append(weekList.get(i) + " " + getResources().getString(R.string.closed_status) + "\n");
             }
         }
 
         List<String> driveUpHours;
         driveUpHours = location.getDriveUpHrs();
-        for(int i = 0; i<weekList.size(); i++){
-            if (!driveUpHours.get(i).isEmpty()){
-                driveUp.append(weekList.get(i)+" "+driveUpHours.get(i)+"\n");
-            }
-            else{
-                driveUp.append(weekList.get(i)+ " " + getResources().getString(R.string.closed_status)+"\n");
+        for (int i = 0; i < weekList.size(); i++) {
+            if (!driveUpHours.get(i).isEmpty()) {
+                driveUp.append(weekList.get(i) + " " + driveUpHours.get(i) + "\n");
+            } else {
+                driveUp.append(weekList.get(i) + " " + getResources().getString(R.string.closed_status) + "\n");
             }
         }
         type.setText(location.getType());
