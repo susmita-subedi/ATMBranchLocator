@@ -1,4 +1,4 @@
-package com.example.ss16173.atmlocator.branchdetails;
+package com.example.ss16173.atmlocator.branchdetails.view;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

@@ -30,8 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".branchlist.BranchListActivity" />
-        <activity android:name=".branchdetails.BranchDetailsActivity" />
-        <activity android:name=".branchdetails.MapsActivity" />
+        <activity android:name=".branchdetails.view.BranchDetailsActivity" />
+        <activity android:name=".branchdetails.view.MapsActivity" />
 
     </application>
 

@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.branchdetails.BranchDetailsActivity;
+import com.example.ss16173.atmlocator.branchdetails.view.BranchDetailsActivity;
 
-import com.example.ss16173.atmlocator.branchdetails.MapsActivity;
-import com.example.ss16173.atmlocator.branchdetails.MapsFragment;
 import com.example.ss16173.atmlocator.model.Location;
 
 import java.util.ArrayList;
