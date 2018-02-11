@@ -37,7 +37,7 @@ public class LocationUtil extends Service implements LocationListener {
 
     public LocationUtil(Context mContext) {
         this.mContext = mContext;
-        getLoc();
+        //getLoc();
     }
 
     public Location getLoc() {
@@ -57,10 +57,10 @@ public class LocationUtil extends Service implements LocationListener {
                     Toast.makeText(mContext, "Network", Toast.LENGTH_LONG).show();
 
                     try {
-
+                        LocationListener locationListener = new LocationUtil(mContext);
                         locationManager.requestLocationUpdates(
                                 LocationManager.NETWORK_PROVIDER,
-                                MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                                MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, locationListener);
                         Log.d("Network", "Network");
                         if (locationManager != null) {
                             loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -171,6 +171,7 @@ public class LocationUtil extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+
 
     }
 

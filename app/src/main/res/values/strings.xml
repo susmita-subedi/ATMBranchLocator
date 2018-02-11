@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ATMLocator</string>
     <string name="closed_status">Closed</string>
-    <string name="url_atm_branch">https://m.chase.com/PSRWeb/location/list.action/</string>
+    <string name="url_atm_branch">https://m.chase.com/PSRWeb/location/</string>
     <string name="find_atm_button">Find ATM/Branches</string>
     <string name="locType">Location Type</string>
     <string name="label">Label</string>

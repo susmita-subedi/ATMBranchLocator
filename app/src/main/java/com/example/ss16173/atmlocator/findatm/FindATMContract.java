@@ -23,7 +23,6 @@ public interface FindATMContract {
 
     interface ATMPresenter {
         void loadATMBranchesList(String lat, String lng);
-
         void setView(ATMView view);
     }
 

@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FindATMBranchesService {
     ATMLocatorResponseDTO atmLocatorResponseDTO = new ATMLocatorResponseDTO();
-    static final String BASE_URL = Resources.getSystem().getString(R.string.url_atm_branch);
+    static final String BASE_URL = "https://m.chase.com/PSRWeb/location/";
     public void getATMBranches(String lat, String lang, final LocationCallBack callback) {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -32,13 +32,17 @@ public class FindATMBranchesService {
         call.enqueue(new Callback<ATMLocatorResponseDTO>() {
             @Override
             public void onResponse(Call<ATMLocatorResponseDTO> call, Response<ATMLocatorResponseDTO> response) {
-                atmLocatorResponseDTO = response.body();
-                callback.onSuccess(atmLocatorResponseDTO);
+                if(response.body().getLocations()!=null) {
+                    atmLocatorResponseDTO = response.body();
+                    callback.onSuccess(atmLocatorResponseDTO);
+                }
+                else if(response.body() == null || response.body().getErrors()!=null)
+                    callback.onError();
             }
 
             @Override
             public void onFailure(Call<ATMLocatorResponseDTO> call, Throwable t) {
-                Log.d("service call", "failure");
+                Log.e("service call", "failure");
                 callback.onError();
                 //todo alert box
             }
@@ -49,7 +53,6 @@ public class FindATMBranchesService {
 
     public interface LocationCallBack {
         void onError();
-
         void onSuccess(ATMLocatorResponseDTO successResponse);
     }
 }
