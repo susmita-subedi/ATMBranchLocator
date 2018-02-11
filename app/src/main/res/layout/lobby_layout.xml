@@ -3,7 +3,6 @@
     android:id="@+id/atm_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp">
@@ -14,7 +13,6 @@
         android:text="@string/lobby"
         android:textSize="16sp"
         android:textStyle="bold"
-
         />
 
     <TextView
