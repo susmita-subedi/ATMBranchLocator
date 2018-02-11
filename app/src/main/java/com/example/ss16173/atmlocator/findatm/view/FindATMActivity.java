@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.branchlist.BranchListActivity;
+import com.example.ss16173.atmlocator.common.SearchFragment;
 import com.example.ss16173.atmlocator.findatm.FindATMContract;
 import com.example.ss16173.atmlocator.findatm.presenter.ATMPresenterImpl;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
@@ -16,6 +16,7 @@ import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 public class FindATMActivity extends AppCompatActivity implements FindATMContract.ATMView {
 
     private ProgressBar progressBar;
+    SearchFragment searchFragment;
 
     private FindATMContract.ATMPresenter atmPresenter;
     //LocationUtil locationService = new LocationUtil(this);
@@ -27,6 +28,9 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         atmPresenter = new ATMPresenterImpl();
         atmPresenter.setView(this);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+        searchFragment = new SearchFragment();
+
     }
 
     @Override
