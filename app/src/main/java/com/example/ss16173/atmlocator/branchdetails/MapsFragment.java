@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ss16173.atmlocator.R;
+import com.example.ss16173.atmlocator.model.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -20,15 +22,22 @@ import android.app.Activity;
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private MapView mapView;
+    private Location location;
     private View mView;
     private String lat, lng;
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Bundle bundle = this.getArguments();
+        if (bundle != null && (bundle.getSerializable("location") != null)) {
+            location = (Location) bundle.getSerializable("location");
+        }
         mView = inflater.inflate(R.layout.maps_fragment, container, false);
+       /* SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);*/
+        SupportMapFragment mapFragment=(SupportMapFragment)this.getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         return mView;
     }
 
@@ -37,15 +46,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        Double lt = Double.valueOf(lat);
-        Double lang = Double.valueOf(lng);
-        LatLng sydney = new LatLng(32.891677, -96.947753);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Double lt = Double.valueOf(location.getLat());
+        Double lang = Double.valueOf(location.getLng());
+        LatLng branch = new LatLng(lt, lang);
+        mMap.addMarker(new MarkerOptions().position(branch));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(branch));
+        mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 20, null);
+
     }
 
-    public void showMarker(String lat, String lng){
-        this.lat = lat;
-        this.lng = lng;
-    }
 }
