@@ -20,7 +20,6 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 public class LocationUtil extends Service implements LocationListener {
 
@@ -43,19 +42,20 @@ public class LocationUtil extends Service implements LocationListener {
     public Location getLoc() {
         try {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+            //check permission
+            /*int locationPermission = ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION);
+            if(locationPermission == 1){*/
             //getting GPS status
             checkGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             //getting network status
             checkNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!checkGPS && !checkNetwork) {
-                Toast.makeText(mContext, "No service provider available", Toast.LENGTH_LONG).show();
             } else {
                 this.canGetLocation = true;
                 //first get location from network provider
                 if (checkNetwork) {
-                    Toast.makeText(mContext, "Network", Toast.LENGTH_LONG).show();
-
                     try {
                         LocationListener locationListener = new LocationUtil(mContext);
                         locationManager.requestLocationUpdates(
@@ -64,7 +64,6 @@ public class LocationUtil extends Service implements LocationListener {
                         Log.d("Network", "Network");
                         if (locationManager != null) {
                             loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
                         }
                         if (loc != null) {
                             latitude = loc.getLatitude();
@@ -77,7 +76,7 @@ public class LocationUtil extends Service implements LocationListener {
             }
             //if gps enabled get lat/lng using gps services
             if (checkGPS) {
-                Toast.makeText(mContext, "GPS", Toast.LENGTH_LONG).show();
+                Log.d("GPS", "Activated");
                 if (loc == null) {
                     try {
                         locationManager.requestLocationUpdates(

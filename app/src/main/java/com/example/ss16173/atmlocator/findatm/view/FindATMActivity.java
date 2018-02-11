@@ -46,7 +46,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     @Override
     public void showError() {
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title
         alertDialogBuilder.setTitle("Error");
@@ -55,7 +55,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         alertDialogBuilder
                 .setMessage("Your request could not be processed at the moment. Please try again later.")
                 .setCancelable(false)
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
@@ -68,7 +68,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         AlertDialog alertDialog = alertDialogBuilder.create();
 
         // show it
-        alertDialog.show();
+        alertDialog.show();*/
     }
 
 
@@ -92,7 +92,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     public void onClickBtn(View view) {
         Location location = locationService.getLoc();
         String lat = String.valueOf(location.getLatitude());
-        String lng =String.valueOf(location.getLongitude());
+        String lng = String.valueOf(location.getLongitude());
         atmPresenter.loadATMBranchesList(lat, lng);
     }
 
