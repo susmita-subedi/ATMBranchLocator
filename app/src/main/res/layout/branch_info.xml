@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
         android:id="@+id/address_box"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:orientation="vertical"
@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/locType"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
@@ -32,12 +32,22 @@
 
         <TextView
             android:id="@+id/label"
-            android:layout_width="fill_parent"
-            android:layout_height="26dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:text="@string/label"
             android:textSize="14sp" />
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/distance"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/address"
@@ -62,18 +72,14 @@
 
     </LinearLayout>
 
-
     <TextView
-        android:id="@+id/distance"
+        android:id="@+id/caret"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="15dp"
-        android:paddingRight="10dp"
-        android:text="@string/distance"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold" />`1
-
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text=">"
+        android:textSize="20sp"/>
 
 </RelativeLayout>
