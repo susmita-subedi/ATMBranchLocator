@@ -5,7 +5,7 @@ import com.example.ss16173.atmlocator.findatm.service.FindATMBranchesService;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 
 /**
- * Created by ss16173 on 2/8/2018.
+ * Created by susmita on 2/8/2018.
  */
 
 public class ATMPresenterImpl implements FindATMContract.ATMPresenter {

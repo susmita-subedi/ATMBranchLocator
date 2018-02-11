@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by ss16173 on 2/8/2018.
+ * Created by susmita on 2/8/2018.
  */
 
 public class ATMLocatorResponseDTO implements Serializable {

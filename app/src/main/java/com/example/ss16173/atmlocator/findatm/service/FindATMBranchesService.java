@@ -1,7 +1,9 @@
 package com.example.ss16173.atmlocator.findatm.service;
 
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 import com.example.ss16173.atmlocator.network.RetrofitService;
 
@@ -12,17 +14,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by ss16173 on 2/8/2018.
+ * Created by susmita on 2/8/2018.
  */
 
 public class FindATMBranchesService {
     ATMLocatorResponseDTO atmLocatorResponseDTO = new ATMLocatorResponseDTO();
-
+    static final String BASE_URL = Resources.getSystem().getString(R.string.url_atm_branch);
     public void getATMBranches(String lat, String lang, final LocationCallBack callback) {
-        String url = "https://m.chase.com/PSRWeb/location/";
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
