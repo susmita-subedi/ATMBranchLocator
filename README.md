@@ -10,6 +10,7 @@ Implemented ATM/ Branch Locator for Chase Bank using their public API
 - e. RecyclerView to show branch/atm list
 - f. Used Google Maps API to show maps with marker for the brnach location.\
 - g. BranchDetailsActivity features two fragments; mapsFragment and branchDetailsFragment
+- h. Used Espresso for Instrumentation tests
 
 
 ######  To do: 
