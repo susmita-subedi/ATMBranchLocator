@@ -20,8 +20,6 @@ public class BranchListActivity extends AppCompatActivity {
 
     RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(this);
     ATMLocatorResponseDTO atmLocatorResponseDTO;
-    private RecyclerView branchListView;
-    private BranchListAdapter branchListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +33,8 @@ public class BranchListActivity extends AppCompatActivity {
         }
 
         List<Location> locationList = atmLocatorResponseDTO.getLocations();
-        branchListView = (RecyclerView) findViewById(R.id.branch_recycler_view);
-        branchListAdapter = new BranchListAdapter(this, locationList);
+        RecyclerView branchListView = findViewById(R.id.branch_recycler_view);
+        BranchListAdapter branchListAdapter = new BranchListAdapter(this, locationList);
         branchListView.setLayoutManager(recyclerViewLayoutManager);
         branchListView.setAdapter(branchListAdapter);
     }

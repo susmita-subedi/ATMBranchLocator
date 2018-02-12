@@ -20,7 +20,8 @@
     <string name="thurs">Thu</string>
     <string name="fri">Fri</string>
     <string name="sat">Sat</string>
-    <string name="miles">miles</string>
+    <string name="miles">%1$s miles</string>
+    <string name="address2text">%1$s, %2$s %3$s</string>
     <string name="search">Enter your ZipCode</string>
     <string name="searc">Search</string>
     <string name="permission_preferences">PERMISSION_PREFERENCE</string>
@@ -31,11 +32,10 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="attention">Attention</string>
+    <string name="phone">Phone no.</string>
 
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -1,6 +1,5 @@
 package com.example.ss16173.atmlocator.findatm.presenter;
 
-import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.findatm.FindATMContract;
 import com.example.ss16173.atmlocator.findatm.service.FindATMBranchesService;
 import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;

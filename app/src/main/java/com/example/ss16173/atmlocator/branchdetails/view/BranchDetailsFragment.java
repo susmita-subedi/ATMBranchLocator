@@ -13,6 +13,7 @@ import com.example.ss16173.atmlocator.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by susmita on 2/10/2018.
@@ -30,11 +31,14 @@ public class BranchDetailsFragment extends Fragment {
     private TextView lobby;
     private TextView driveUp;
     private TextView type;
+    private TextView phone;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
+        //get data from activity
         Bundle bundle = this.getArguments();
         if (bundle != null && (bundle.getSerializable("location") != null)) {
             location = (Location) bundle.getSerializable("location");
@@ -56,25 +60,22 @@ public class BranchDetailsFragment extends Fragment {
         lobby = view.findViewById(R.id.lobby_hours);
         driveUp = view.findViewById(R.id.drive_up_hours);
         type = view.findViewById(R.id.type);
+        phone = view.findViewById(R.id.phone);
+        TextView caret = view.findViewById(R.id.caret);
+        caret.setVisibility(View.GONE);
     }
 
     public void populateBranchDetailsView() {
         locationType.setText(location.getLocType());
         label.setText(location.getLabel());
         address.setText(location.getAddress());
-        address2.setText(location.getCity() + ", " + location.getState() + " " + location.getZip());
-        distance.setText(String.valueOf(location.getDistance()) + " miles");
+        String address2String = getResources().getString(R.string.address2text);
+        address2.setText(String.format(address2String, location.getCity(),location.getState(), location.getZip()));
+        distance.setText(String.format(getResources().getString(R.string.miles), location.getDistance()));
         String atmCnt = location.getAtms().toString();
         atms.setText(atmCnt);
 
-        List<String> weekList = new ArrayList<>();
-        weekList.add(getResources().getString(R.string.sun));
-        weekList.add(getResources().getString(R.string.mon));
-        weekList.add(getResources().getString(R.string.tue));
-        weekList.add(getResources().getString(R.string.wed));
-        weekList.add(getResources().getString(R.string.thurs));
-        weekList.add(getResources().getString(R.string.fri));
-        weekList.add(getResources().getString(R.string.sat));
+        List<String> weekList = generateWeekList();
 
         List<String> lobbyHrList;
         lobbyHrList = location.getLobbyHrs();
@@ -96,6 +97,19 @@ public class BranchDetailsFragment extends Fragment {
             }
         }
         type.setText(location.getType());
+        phone.setText(location.getPhone());
+    }
+
+    public List<String> generateWeekList() {
+        List<String> weekList = new ArrayList<>();
+        weekList.add(getResources().getString(R.string.sun));
+        weekList.add(getResources().getString(R.string.mon));
+        weekList.add(getResources().getString(R.string.tue));
+        weekList.add(getResources().getString(R.string.wed));
+        weekList.add(getResources().getString(R.string.thurs));
+        weekList.add(getResources().getString(R.string.fri));
+        weekList.add(getResources().getString(R.string.sat));
+        return weekList;
     }
 
 }

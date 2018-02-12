@@ -35,31 +35,23 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
     @Override
     public BranchListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.branch_info, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view, context, branchList);
-        return viewHolder;
+        return new ViewHolder(view, context, branchList);
     }
 
     @Override
-    public void onBindViewHolder(BranchListAdapter.ViewHolder holder, int position) {
-        ViewHolder viewHolder = holder;
+    public void onBindViewHolder(BranchListAdapter.ViewHolder viewHolder, int position) {
         Location current = branchList.get(position);
         viewHolder.locationType.setText(current.getLocType());
         viewHolder.label.setText(current.getLabel());
         viewHolder.address.setText(current.getAddress());
         viewHolder.address2.setText(current.getCity() + ", " + current.getState() + " " + current.getZip());
         viewHolder.distance.setText(String.valueOf(current.getDistance()) + " miles");
-
     }
 
     @Override
     public int getItemCount() {
         return branchList.size();
     }
-
-    public void add(int position, Location location) {
-        branchList.add(position, location);
-    }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView locationType;
@@ -72,7 +64,7 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
         Context context;
 
 
-        public ViewHolder(View v, Context context, List<Location> locationList) {
+        private ViewHolder(View v, Context context, List<Location> locationList) {
             super(v);
             v.setOnClickListener(this);
             this.context = context;

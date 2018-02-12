@@ -20,6 +20,7 @@ public class BranchDetailsActivity extends AppCompatActivity {
     MapsFragment mapsFragment;
     BranchDetailsFragment branchDetailsFragment;
 
+    //BranchDetailsActivity consists of 2 fragmnets; mapsFragment and branchDetailsFragment
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,8 @@ public class BranchDetailsActivity extends AppCompatActivity {
         } else {
             Log.e("Error in intent", "Could not find ATMLocatorResponse in Intent");
         }
+
+        //load the fragments on Run time
         branchDetailsFragment = new BranchDetailsFragment();
         mapsFragment = new MapsFragment();
         FragmentManager manager = getSupportFragmentManager();
@@ -40,16 +43,11 @@ public class BranchDetailsActivity extends AppCompatActivity {
                 .replace(R.id.second_layout, branchDetailsFragment, branchDetailsFragment.getTag())
                 .commit();
 
+        //pass data from Activity to fragments
         Bundle sendBundle = new Bundle();
         sendBundle.putSerializable("location", location);
         mapsFragment.setArguments(bundle);
         branchDetailsFragment.setArguments(sendBundle);
     }
 
-
-   /* @Override
-    public void showMarker(String lat, String lng) {
-        mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.second_layout);
-        mapsFragment.showMarker(lat, lng);
-    }*/
 }

@@ -9,6 +9,8 @@
 
     <include layout="@layout/branch_info"></include>
 
+    <include layout="@layout/phone"></include>
+
     <include layout="@layout/atm"></include>
 
     <include layout="@layout/lobby_layout"></include>

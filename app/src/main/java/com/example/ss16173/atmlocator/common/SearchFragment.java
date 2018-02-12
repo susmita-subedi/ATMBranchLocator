@@ -12,6 +12,8 @@ import com.example.ss16173.atmlocator.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+//todo Implement searchfragment in the first and second page to get zipcode and get branch locations
 public class SearchFragment extends Fragment {
 
 

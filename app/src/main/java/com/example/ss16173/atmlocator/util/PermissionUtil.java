@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.ss16173.atmlocator.R;
+import com.example.ss16173.atmlocator.findatm.view.FindATMActivity;
 
 /**
  * Created by susmita on 2/11/2018.
@@ -11,9 +12,9 @@ import com.example.ss16173.atmlocator.R;
 
 public class PermissionUtil {
 
-    private Context context;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    private static Context context;
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
 
     public PermissionUtil(Context context) {
         this.context = context;
@@ -21,10 +22,14 @@ public class PermissionUtil {
         editor = sharedPreferences.edit();
     }
 
+    public static void setContext(Context context) {
+        context.getApplicationContext();
+    }
+
     /*method to update permissions on SharedPreference for the first time
     used switch case coz we can add more dangerous permissions are required later
     */
-    public void updatePermissionPreference(String permission) {
+    public static void updatePermissionPreference(String permission) {
         switch (permission) {
             case "location":
                 editor.putBoolean(context.getString(R.string.permission_location), true);
@@ -34,7 +39,7 @@ public class PermissionUtil {
     }
 
     //method to check if the permission is already requested on the sharedPrefenreces or not
-    public boolean checkPermissionPreference(String permission) {
+    public static boolean checkPermissionPreference(String permission) {
         boolean isShown = false;
 
         switch (permission) {

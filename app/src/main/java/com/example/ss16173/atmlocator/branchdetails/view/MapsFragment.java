@@ -34,8 +34,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             location = (Location) bundle.getSerializable("location");
         }
         mView = inflater.inflate(R.layout.maps_fragment, container, false);
-       /* SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);*/
         SupportMapFragment mapFragment=(SupportMapFragment)this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         return mView;
@@ -44,8 +42,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         Double lt = Double.valueOf(location.getLat());
         Double lang = Double.valueOf(location.getLng());
         LatLng branch = new LatLng(lt, lang);

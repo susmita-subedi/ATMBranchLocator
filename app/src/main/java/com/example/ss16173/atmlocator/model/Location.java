@@ -28,27 +28,6 @@ public class Location implements Serializable {
     private double distance;
     private String access;
 
-    public Location(String state, String locType, String label, String address, String city, String zip, String name, String lat, String lng, String bank, String type, List<String> lobbyHrs, List<String> driveUpHrs, Integer atms, List<String> services, String phone, double distance, String access) {
-        this.state = state;
-        this.locType = locType;
-        this.label = label;
-        this.address = address;
-        this.city = city;
-        this.zip = zip;
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
-        this.bank = bank;
-        this.type = type;
-        this.lobbyHrs = lobbyHrs;
-        this.driveUpHrs = driveUpHrs;
-        this.atms = atms;
-        this.services = services;
-        this.phone = phone;
-        this.distance = distance;
-        this.access = access;
-    }
-
     public Location() {
     }
 
@@ -88,10 +67,6 @@ public class Location implements Serializable {
         return lng;
     }
 
-    public String getBank() {
-        return bank;
-    }
-
     public String getType() {
         return type;
     }
@@ -108,10 +83,6 @@ public class Location implements Serializable {
         return atms;
     }
 
-    public List<String> getServices() {
-        return services;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -120,7 +91,4 @@ public class Location implements Serializable {
         return distance;
     }
 
-    public String getAccess() {
-        return access;
-    }
 }

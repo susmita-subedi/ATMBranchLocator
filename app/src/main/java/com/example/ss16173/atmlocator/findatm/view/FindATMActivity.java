@@ -1,7 +1,6 @@
 package com.example.ss16173.atmlocator.findatm.view;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,18 +25,18 @@ import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
 import com.example.ss16173.atmlocator.util.LocationUtil;
 import com.example.ss16173.atmlocator.util.PermissionUtil;
 
+import java.io.IOException;
+import java.security.Permission;
+
 public class FindATMActivity extends AppCompatActivity implements FindATMContract.ATMView {
 
     private ProgressBar progressBar;
     SearchFragment searchFragment;
-    Context context;
     private FindATMContract.ATMPresenter atmPresenter;
     LocationUtil locationService = new LocationUtil(this);
 
     private static final int REQUEST_LOCATION = 100;
     private static final int TXT_LOCATION = 1;
-
-    private PermissionUtil permissionUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
 
         searchFragment = new SearchFragment();
 
-        permissionUtil = new PermissionUtil(this);
+        PermissionUtil.setContext(this);
 
     }
 
@@ -61,14 +60,9 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         switch (permission) {
             case TXT_LOCATION:
                 status = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-                //status2 = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
                 break;
         }
 
-        //to check if one  permission is granted but the other is not granted, deny the location permission
-       /* if(status > status2){
-            status = status2;
-        }*/
         return status;
     }
 
@@ -146,28 +140,32 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         startActivity(intent);
     }
 
-    public void onClickBtn(View view) {
-        if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1)) {
-            if (checkPermission(TXT_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(FindATMActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    showError(getString(R.string.request_permission));
-                }
-                else if (!permissionUtil.checkPermissionPreference("location")) {
-                    requestPermission(TXT_LOCATION);
-                    permissionUtil.updatePermissionPreference("location");
-                } else {
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    Uri uri = Uri.fromParts("package", this.getPackageName(), null);
-                    intent.setData(uri);
-                    this.startActivity(intent);
-                }
+    public void onClickBtn(View view) throws IOException, InterruptedException {
+        if (isConnectedToInternet()) {
+            if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1)) {
+                if (checkPermission(TXT_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(FindATMActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        showError(getString(R.string.request_permission));
+                    } else if (!PermissionUtil.checkPermissionPreference("location")) {
+                        requestPermission(TXT_LOCATION);
+                        PermissionUtil.updatePermissionPreference("location");
+                    } else {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", this.getPackageName(), null);
+                        intent.setData(uri);
+                        this.startActivity(intent);
+                    }
 
+                } else {
+                    getBranchList();
+                }
             } else {
                 getBranchList();
             }
-        } else {
-            getBranchList();
+        }
+        else{
+            showError("No internet");
         }
     }
 
@@ -179,5 +177,8 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
         atmPresenter.loadATMBranchesList(lat, lng);
     }
 
-
+    public boolean isConnectedToInternet() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return (Runtime.getRuntime().exec (command).waitFor() == 0);
+    }
 }

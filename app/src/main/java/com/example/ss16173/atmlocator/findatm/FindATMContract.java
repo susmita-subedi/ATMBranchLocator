@@ -19,6 +19,7 @@ public interface FindATMContract {
         void hideLoader();
 
         void showATMList(ATMLocatorResponseDTO dto);
+
     }
 
     interface ATMPresenter {

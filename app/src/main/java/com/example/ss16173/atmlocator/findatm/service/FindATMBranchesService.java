@@ -38,7 +38,7 @@ public class FindATMBranchesService {
                     callback.onSuccess(atmLocatorResponseDTO);
                 } else {
                     Log.e("Service call failure", response.message());
-                    callback.onError(Resources.getSystem().getString(R.string.service_error));
+                    callback.onError("Unable to find ATMs/Branch near you. Please try again later.");
                 }
             }
 
