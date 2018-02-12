@@ -6,7 +6,7 @@
     tools:context="com.example.ss16173.atmlocator.findatm.view.FindATMActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/findAtmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
