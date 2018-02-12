@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.model.Location;
+import com.example.ss16173.atmlocator.common.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by susmita on 2/10/2018.
@@ -70,8 +69,8 @@ public class BranchDetailsFragment extends Fragment {
         label.setText(location.getLabel());
         address.setText(location.getAddress());
         String address2String = getResources().getString(R.string.address2text);
-        address2.setText(String.format(address2String, location.getCity(),location.getState(), location.getZip()));
-        distance.setText(String.format(getResources().getString(R.string.miles), location.getDistance()));
+        address2.setText(String.format(address2String, location.getCity(), location.getState(), location.getZip()));
+        distance.setText(String.format(getResources().getString(R.string.miles), String.valueOf(location.getDistance())));
         String atmCnt = location.getAtms().toString();
         atms.setText(atmCnt);
 

@@ -24,9 +24,9 @@ import com.example.ss16173.atmlocator.branchlist.BranchListActivity;
 import com.example.ss16173.atmlocator.common.SearchFragment;
 import com.example.ss16173.atmlocator.findatm.FindATMContract;
 import com.example.ss16173.atmlocator.findatm.presenter.ATMPresenterImpl;
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
-import com.example.ss16173.atmlocator.util.LocationUtil;
-import com.example.ss16173.atmlocator.util.PermissionUtil;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.util.LocationUtil;
+import com.example.ss16173.atmlocator.common.util.PermissionUtil;
 
 import java.io.IOException;
 
@@ -180,8 +180,6 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     }
 
     public boolean isConnectedToInternet() throws InterruptedException, IOException {
-       /* String command = "ping -c 1 google.com";
-        return (Runtime.getRuntime().exec(command).waitFor() == 0);*/
         boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
 

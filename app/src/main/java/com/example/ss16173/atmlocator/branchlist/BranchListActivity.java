@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
-import com.example.ss16173.atmlocator.model.Location;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.model.Location;
 
 import java.util.List;
 

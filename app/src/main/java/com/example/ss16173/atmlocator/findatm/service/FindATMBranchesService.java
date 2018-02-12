@@ -4,8 +4,8 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
-import com.example.ss16173.atmlocator.network.RetrofitService;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.network.RetrofitService;
 
 import retrofit2.Call;
 import retrofit2.Callback;

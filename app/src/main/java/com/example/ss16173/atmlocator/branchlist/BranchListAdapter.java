@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.ss16173.atmlocator.R;
 import com.example.ss16173.atmlocator.branchdetails.view.BranchDetailsActivity;
-import com.example.ss16173.atmlocator.model.Location;
+import com.example.ss16173.atmlocator.common.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +44,9 @@ public class BranchListAdapter extends RecyclerView.Adapter<BranchListAdapter.Vi
         viewHolder.locationType.setText(current.getLocType());
         viewHolder.label.setText(current.getLabel());
         viewHolder.address.setText(current.getAddress());
-        viewHolder.address2.setText(current.getCity() + ", " + current.getState() + " " + current.getZip());
-        viewHolder.distance.setText(String.valueOf(current.getDistance()) + " miles");
+
+        viewHolder.address2.setText(String.format(context.getResources().getString(R.string.address2text), current.getCity(), current.getState(), current.getZip()));
+        viewHolder.distance.setText(String.format(context.getResources().getString(R.string.miles), String.valueOf(current.getDistance())));
     }
 
     @Override

@@ -3,15 +3,11 @@ package com.example.ss16173.atmlocator;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.ss16173.atmlocator.util.PermissionUtil;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 

@@ -1,4 +1,4 @@
-package com.example.ss16173.atmlocator.model;
+package com.example.ss16173.atmlocator.common.model;
 
 import java.io.Serializable;
 import java.util.List;

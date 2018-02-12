@@ -1,4 +1,4 @@
-package com.example.ss16173.atmlocator.model;
+package com.example.ss16173.atmlocator.common.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,21 +15,14 @@ public class Location implements Serializable {
     private String address;
     private String city;
     private String zip;
-    private String name;
     private String lat;
     private String lng;
-    private String bank;
     private String type;
     private List<String> lobbyHrs = null;
     private List<String> driveUpHrs = null;
     private Integer atms;
-    private List<String> services = null;
     private String phone;
     private double distance;
-    private String access;
-
-    public Location() {
-    }
 
     public String getState() {
         return state;
@@ -53,10 +46,6 @@ public class Location implements Serializable {
 
     public String getZip() {
         return zip;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getLat() {

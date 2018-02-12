@@ -1,6 +1,6 @@
-package com.example.ss16173.atmlocator.network;
+package com.example.ss16173.atmlocator.common.network;
 
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -2,7 +2,7 @@ package com.example.ss16173.atmlocator.findatm.presenter;
 
 import com.example.ss16173.atmlocator.findatm.FindATMContract;
 import com.example.ss16173.atmlocator.findatm.service.FindATMBranchesService;
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
 
 /**
  * Created by susmita on 2/8/2018.

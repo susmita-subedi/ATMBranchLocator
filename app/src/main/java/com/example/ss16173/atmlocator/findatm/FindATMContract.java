@@ -1,6 +1,6 @@
 package com.example.ss16173.atmlocator.findatm;
 
-import com.example.ss16173.atmlocator.model.ATMLocatorResponseDTO;
+import com.example.ss16173.atmlocator.common.model.ATMLocatorResponseDTO;
 
 /**
  * Created by susmita on 2/8/2018.

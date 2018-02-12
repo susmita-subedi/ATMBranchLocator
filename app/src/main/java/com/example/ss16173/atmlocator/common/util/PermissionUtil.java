@@ -1,10 +1,9 @@
-package com.example.ss16173.atmlocator.util;
+package com.example.ss16173.atmlocator.common.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.findatm.view.FindATMActivity;
 
 /**
  * Created by susmita on 2/11/2018.

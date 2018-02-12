@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.ss16173.atmlocator.R;
-import com.example.ss16173.atmlocator.model.Location;
+import com.example.ss16173.atmlocator.common.model.Location;
 
 /**
  * Created by susmita on 2/9/2018.
