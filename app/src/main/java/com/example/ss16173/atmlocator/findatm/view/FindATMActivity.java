@@ -1,10 +1,13 @@
 package com.example.ss16173.atmlocator.findatm.view;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +29,6 @@ import com.example.ss16173.atmlocator.util.LocationUtil;
 import com.example.ss16173.atmlocator.util.PermissionUtil;
 
 import java.io.IOException;
-import java.security.Permission;
 
 public class FindATMActivity extends AppCompatActivity implements FindATMContract.ATMView {
 
@@ -34,7 +36,8 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     SearchFragment searchFragment;
     private FindATMContract.ATMPresenter atmPresenter;
     LocationUtil locationService = new LocationUtil(this);
-
+    Context context;
+    PermissionUtil permissionUtil;
     private static final int REQUEST_LOCATION = 100;
     private static final int TXT_LOCATION = 1;
 
@@ -48,7 +51,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
 
         searchFragment = new SearchFragment();
 
-        PermissionUtil.setContext(this);
+        permissionUtil = new PermissionUtil(this);
 
     }
 
@@ -146,9 +149,9 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
                 if (checkPermission(TXT_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(FindATMActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                         showError(getString(R.string.request_permission));
-                    } else if (!PermissionUtil.checkPermissionPreference("location")) {
+                    } else if (!permissionUtil.checkPermissionPreference("location")) {
                         requestPermission(TXT_LOCATION);
-                        PermissionUtil.updatePermissionPreference("location");
+                        permissionUtil.updatePermissionPreference("location");
                     } else {
                         Intent intent = new Intent();
                         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -163,8 +166,7 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
             } else {
                 getBranchList();
             }
-        }
-        else{
+        } else {
             showError("No internet");
         }
     }
@@ -178,7 +180,21 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
     }
 
     public boolean isConnectedToInternet() throws InterruptedException, IOException {
-        String command = "ping -c 1 google.com";
-        return (Runtime.getRuntime().exec (command).waitFor() == 0);
+       /* String command = "ping -c 1 google.com";
+        return (Runtime.getRuntime().exec(command).waitFor() == 0);*/
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
     }
 }

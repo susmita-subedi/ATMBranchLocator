@@ -1,0 +1,10 @@
+diff a/app/src/main/java/com/example/ss16173/atmlocator/util/PermissionUtil.java b/app/src/main/java/com/example/ss16173/atmlocator/util/PermissionUtil.java	(rejected hunks)
+@@ -39,7 +39,7 @@
+     }
+ 
+     //method to check if the permission is already requested on the sharedPrefenreces or not
+-    public boolean checkPermissionPreference(String permission) {
++    public static boolean checkPermissionPreference(String permission) {
+         boolean isShown = false;
+ 
+         switch (permission) {
