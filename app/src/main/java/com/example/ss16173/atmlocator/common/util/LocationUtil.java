@@ -122,11 +122,12 @@ public class LocationUtil extends Service implements LocationListener {
 
     }
 
-    public double getLatitude(){
+
+    public double getLat(){
         return latitude;
     }
 
-    public double getLongitude(){
+    public double getLong(){
         return longitude;
     }
 }

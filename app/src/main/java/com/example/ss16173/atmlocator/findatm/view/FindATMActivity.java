@@ -173,9 +173,9 @@ public class FindATMActivity extends AppCompatActivity implements FindATMContrac
 
 
     public void getBranchList() {
-        Location location = locationService.getLoc();
-        String lat = String.valueOf(location.getLatitude());
-        String lng = String.valueOf(location.getLongitude());
+        locationService.getLoc();
+        String lat = String.valueOf(locationService.getLat());
+        String lng = String.valueOf(locationService.getLong());
       /* String lat = "32.926000";
        String lng = "-96.966925";*/
         atmPresenter.loadATMBranchesList(lat, lng);
