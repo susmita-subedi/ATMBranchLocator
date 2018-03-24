@@ -22,6 +22,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private Location location;
     private View mView;
     private String lat, lng;
+    private static final int zoomLabel = 15;
+    private static final int animationDuration = 20;
 
     @Nullable
     @Override
@@ -45,8 +47,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(branch));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(branch));
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 20, null);
-
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomLabel), animationDuration, null);
     }
 
 }

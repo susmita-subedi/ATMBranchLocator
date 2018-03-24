@@ -121,4 +121,12 @@ public class LocationUtil extends Service implements LocationListener {
     public void onProviderDisabled(String provider) {
 
     }
+
+    public double getLatitude(){
+        return latitude;
+    }
+
+    public double getLongitude(){
+        return longitude;
+    }
 }

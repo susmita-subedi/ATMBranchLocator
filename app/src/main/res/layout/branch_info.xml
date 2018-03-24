@@ -80,6 +80,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:text=">"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"/>
 
 </RelativeLayout>
