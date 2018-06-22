@@ -65,7 +65,7 @@ public class BranchDetailsFragment extends Fragment {
     }
 
     public void populateBranchDetailsView() {
-        locationType.setText(location.getLocType());
+        locationType.setText(capitalizeFirstLetter(location.getLocType()));
         label.setText(location.getLabel());
         address.setText(location.getAddress());
         String address2String = getResources().getString(R.string.address2text);
@@ -109,6 +109,13 @@ public class BranchDetailsFragment extends Fragment {
         weekList.add(getResources().getString(R.string.fri));
         weekList.add(getResources().getString(R.string.sat));
         return weekList;
+    }
+
+    public String capitalizeFirstLetter(String original) {
+        if (original == null || original.length() == 0) {
+            return original;
+        }
+        return original.substring(0, 1).toUpperCase() + original.substring(1);
     }
 
 }
